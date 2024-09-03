@@ -1,0 +1,28 @@
+@startuml diagrama
+start
+
+:Inicializar molduras e contador de faltas;
+
+while (Para cada referência de página) is (Referência disponível)
+  :Verificar se a página está na memória;
+  if (Página está na memória?) then (Sim)
+    :Continuar para a próxima referência;
+  else (Não)
+    :Incrementar contador de faltas;
+    if (Existe espaço nas molduras?) then (Sim)
+      :Carregar página na moldura vazia;
+    else (Não)
+      :Verificar o uso futuro das páginas;
+      if (Página não será usada novamente?) then (Sim)
+        :Escolher essa página para substituir;
+      else (Não)
+        :Escolher a página que será usada o mais tarde possível;
+      endif
+      :Substituir a página escolhida;
+    endif
+  endif
+endwhile
+
+:Exibir resultados;
+stop
+@enduml
